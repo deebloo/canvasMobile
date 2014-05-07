@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="slide-out">Slide Out</button>
+
+    <div id="container"></div>
+
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.2.min.js"></script>
+    <script src="js/canvasMobile.js"></script>
+
+    <script>
+      var stage = new Kinetic.Stage({
+        container: 'container',
+        width: window.screen.availWidth,
+        height: window.screen.availHeight
+      });
+
+      var myDrawer = new Drawer({
+        height: 50,
+        width: 275,
+        stage: stage
+      });
+
+      myDrawer.create();
+
+      var slideButtonOut = document.getElementById("slide-out");
+
+      slideButtonOut.addEventListener("click", function() {
+        myDrawer.slideOut({ duration: .85, easing: "BounceEaseOut" });
+      });
+    </script>
+  </body>
+</html>
