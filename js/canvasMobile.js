@@ -19,6 +19,7 @@ Drawer.prototype.create = function() {
 
   var drawerHeight = 0; // calculate the total height of the drawer
 
+  var itemCount = 0;
   for (var i = 0; i <= this.height * this.data.length + 1; i += this.height + 1) {
     drawerHeight += this.height + 1;
 
@@ -34,7 +35,7 @@ Drawer.prototype.create = function() {
     var text = new Kinetic.Text({
       x: 20,
       y: i + 10,
-      text: "test",
+      text: this.data[itemCount].title,
       fontSize: 30,
       fontFamily: "Calibri",
       fill: "white"
@@ -42,6 +43,7 @@ Drawer.prototype.create = function() {
 
     this.drawerLayer.add(object); // add the shape to the layer
     this.drawerLayer.add(text);
+    itemCount++;
   }
 
   this.drawerLayer.offsetX(this.width); // offset the drawer by the set width
@@ -60,13 +62,13 @@ Drawer.prototype.slideOut = function(opts) {
   var duration = typeof opts !== "undefined" && typeof opts.duration !== "undefined" ? opts.duration : .25;
   var easing = typeof opts !== "undefined" && typeof opts.easing !== "undefined" ? opts.easing : null;
 
-    var tween = new Kinetic.Tween({
-      node: this.drawerLayer,
-      duration: duration,
-      x: this.width,
-      y: 0,
-      easing: Kinetic.Easings[easing]
-    });
+  var tween = new Kinetic.Tween({
+    node: this.drawerLayer,
+    duration: duration,
+    x: this.width,
+    y: 0,
+    easing: Kinetic.Easings[easing]
+  });
 
-    tween.play();
+  tween.play();
 };
