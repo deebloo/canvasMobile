@@ -19,7 +19,7 @@ You can the slide the drawer out by calling slideOut().
         height: 50,
         width: 275,
         stage: stage,
-        data: dummyData
+        data: dummyData //feed data an array of objects. Ex: {title: "home", link: "http://www.google.com"}
     });
     
     //draw the drawer to the screen
