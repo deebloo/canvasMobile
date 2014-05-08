@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
     <style>
@@ -20,16 +19,42 @@
     <script src="js/canvasMobile.js"></script>
 
     <script>
+      // Create your Kinetic JS Stage
       var stage = new Kinetic.Stage({
         container: 'container',
         width: window.screen.availWidth,
         height: window.screen.availHeight
       });
 
+      var dummyData =  [
+        {
+          title: "test",
+          link: "http://www.google.com"
+        },
+        {
+          title: "test",
+          link: "http://www.google.com"
+        },
+        {
+          title: "test",
+          link: "http://www.google.com"
+        },
+        {
+          title: "test",
+          link: "http://www.google.com"
+        },
+        {
+          title: "test",
+          link: "http://www.google.com"
+        }
+      ]
+
+      // Initiate the drawer widget
       var myDrawer = new Drawer({
         height: 50,
         width: 275,
-        stage: stage
+        stage: stage,
+        data: dummyData
       });
 
       myDrawer.create();
@@ -37,7 +62,7 @@
       var slideButtonOut = document.getElementById("slide-out");
 
       slideButtonOut.addEventListener("click", function() {
-        myDrawer.slideOut({ duration: .85, easing: "BounceEaseOut" });
+        myDrawer.slideOut({ duration: 0.85, easing: "BounceEaseOut" });
       });
     </script>
   </body>
