@@ -22,8 +22,13 @@ Drawer.prototype.create = function() {
   var drawerHeight = 0; // calculate the total height of the drawer
 
   var itemCount = 0;
+
+  var layer = this.drawerLayer;
+
   for (var i = 0; i <= this.height * this.data.length + 1; i += this.height + 1) {
     drawerHeight += this.height + 1;
+
+    var link = this.data[itemCount].link;
 
     // Create the rectangles for the drawer items
     var object = new Kinetic.Rect({
@@ -34,6 +39,22 @@ Drawer.prototype.create = function() {
       fill: "grey"
     });
 
+    /*
+    ** Touch down and up effects.
+    ** changes window location on mouse or touch uo
+    */
+    object.on("mousedown touchdown", function(evt) {
+      this.fill('lightgrey');
+      layer.draw();
+    });
+
+    object.on("mouseup touchup", function(evt) {
+      window.location = link;
+      this.fill("grey");
+      layer.draw();
+    });
+
+    // Create the text for the drawer items
     var text = new Kinetic.Text({
       x: 20,
       y: i + 10,
@@ -43,8 +64,8 @@ Drawer.prototype.create = function() {
       fill: "white"
     });
 
-    this.drawerLayer.add(object); // add the shape to the layer
-    this.drawerLayer.add(text);
+    layer.add(object); // add the shape to the layer
+    layer.add(text);
     itemCount++;
   }
 
