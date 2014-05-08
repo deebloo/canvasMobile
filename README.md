@@ -1,5 +1,6 @@
-Mobile Canvas
+Mobile Drawer Canvas
 ============
+This is an experiment with the html5 canvas and Kinetic JS.
 
 HTML5 canvas components for mobile web apps using Kinetic JS.
 Creates high performance GUI objects without needing you to touch the canvas yourself.
