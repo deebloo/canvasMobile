@@ -7,6 +7,8 @@ function Drawer(opts) {
   this.stage = opts.stage;
   this.data = opts.data;
 
+  this.drawerOpen = false;
+
   // placeholder for the canvas layer
   this.drawerLayer;
 }
@@ -59,16 +61,33 @@ Drawer.prototype.create = function() {
 ** Slide method. Animates the drawer menu.
 */
 Drawer.prototype.slideOut = function(opts) {
-  var duration = typeof opts !== "undefined" && typeof opts.duration !== "undefined" ? opts.duration : .25;
+  /*
+  ** Sets defaults for duration and easing.
+  ** By default duration = 0.25s and easing = null
+  */
+  var duration = typeof opts !== "undefined" && typeof opts.duration !== "undefined" ? opts.duration : 0.25;
   var easing = typeof opts !== "undefined" && typeof opts.easing !== "undefined" ? opts.easing : null;
 
-  var tween = new Kinetic.Tween({
+  // Options object for the drawer slide out
+  var tweenOpts = {
     node: this.drawerLayer,
     duration: duration,
-    x: this.width,
     y: 0,
     easing: Kinetic.Easings[easing]
-  });
+  }
 
+  // Handle whether the drawer is currently open or not
+  if(this.drawerOpen === false) {
+    this.drawerOpen = true;
+    tweenOpts.x = this.width;
+  } else {
+    this.drawerOpen = false;
+    tweenOpts.x = this.width - this.width - this.width;
+  }
+
+  // Create tween
+  var tween = new Kinetic.Tween(tweenOpts);
+
+  // Play tween
   tween.play();
 };
