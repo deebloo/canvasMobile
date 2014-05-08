@@ -58,9 +58,9 @@ Drawer.prototype.create = function() {
       fill: "grey"
     });
 
-    object.on("mousedown touchdown", mouseDownEvent);
+    object.on("mousedown touchstart", mouseDownEvent);
 
-    object.on("mouseup touchup", mouseUpEvent);
+    object.on("mouseup touchend", mouseUpEvent);
 
     // Create the text for the drawer items
     var text = new Kinetic.Text({
