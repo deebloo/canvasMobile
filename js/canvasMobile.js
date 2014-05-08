@@ -21,9 +21,28 @@ Drawer.prototype.create = function() {
 
   var drawerHeight = 0; // calculate the total height of the drawer
 
+  /*
+  ** var i in the food loop is set for the correct spacing for the menu items.
+  ** itemCount is set to keep track of the number of times run.
+  */
   var itemCount = 0;
 
   var layer = this.drawerLayer;
+
+  /*
+  ** Touch down and up effects.
+  ** changes window location on mouse or touch uo
+  */
+  function mouseDownEvent() {
+    this.fill('lightgrey');
+    layer.draw();
+  }
+
+  function mouseUpEvent() {
+    window.location = link;
+    this.fill("grey");
+    layer.draw();
+  }
 
   for (var i = 0; i <= this.height * this.data.length + 1; i += this.height + 1) {
     drawerHeight += this.height + 1;
@@ -39,20 +58,9 @@ Drawer.prototype.create = function() {
       fill: "grey"
     });
 
-    /*
-    ** Touch down and up effects.
-    ** changes window location on mouse or touch uo
-    */
-    object.on("mousedown touchdown", function(evt) {
-      this.fill('lightgrey');
-      layer.draw();
-    });
+    object.on("mousedown touchdown", mouseDownEvent);
 
-    object.on("mouseup touchup", function(evt) {
-      window.location = link;
-      this.fill("grey");
-      layer.draw();
-    });
+    object.on("mouseup touchup", mouseUpEvent);
 
     // Create the text for the drawer items
     var text = new Kinetic.Text({
