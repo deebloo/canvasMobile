@@ -7,7 +7,7 @@ Creates high performance GUI objects without needing you to touch the canvas you
 
 To initiate a drawer(this will create a canvas width a drawer drawn off screen):
 You can the slide the drawer out by calling slideOut().
-    
+```JS    
     //create stage to hold your drawer
     var stage = new Kinetic.Stage({
         container: 'container',
@@ -32,3 +32,4 @@ You can the slide the drawer out by calling slideOut().
     slideButtonOut.addEventListener("click", function() {
         myDrawer.slideOut({ duration: 0.85, easing: "BounceEaseOut" });
     });
+```
